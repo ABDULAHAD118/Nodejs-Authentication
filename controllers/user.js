@@ -15,11 +15,11 @@ const signup = async (req, res) => {
         password: password
     });
     if (user) {
-        return res.status(201).json({ message: 'Registration Successful!' });
+        return res.redirect("/")
     }
     else {
         return res.status(500).json({ message: 'Registration Failed!' });
     }
 }
 
-export { signup };
+export { signup, login };
