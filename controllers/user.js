@@ -8,6 +8,7 @@ const signup = async (req, res) => {
     if (password !== confirmPassword) {
         return res.status(400).json({ message: 'Passwords do not match' });
     }
+
     const user = await User.create({
         username: username,
         email: email,
@@ -19,6 +20,25 @@ const signup = async (req, res) => {
     }
     else {
         return res.status(500).json({ message: 'Registration Failed!' });
+    }
+}
+
+const login = async (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+        return res.status(400).json({ message: 'Send All fields!' });
+    }
+    const user = await User.findOne({ username: username });
+    if (user) {
+        if (password === user.password) {
+            return res.status(200).json({ message: "Login Successful" });
+        }
+        else {
+            return res.json({ message: "Incorrect Password" })
+        }
+    }
+    else {
+        return res.json({ message: "User not Found" })
     }
 }
 
