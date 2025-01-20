@@ -1,0 +1,161 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  background-color: #ff7700 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23cc0000' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23aa0000' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23ca002c' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23a70022' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23c6004c' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23a3003c' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23c0006a' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%239d0055' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23b7008a' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%2394006e' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23aa00aa' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23880088' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.form__label {
+  font-family: 'Roboto', sans-serif;
+  color: antiquewhite;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
+  display: block;
+  transition: all 0.3s;
+  transform: translateX(0rem);
+}
+
+.form__input {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 50vw;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown+.form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateX(-4rem);
+  transform: translateX(-4rem);
+}
+
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  margin-top: .5rem;
+  border-radius: 10px;
+  transition: 01s;
+  border: 2px solid white;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+ul li:hover {
+  background-color: transparent;
+  color: white;
+
+}
+
+.btn {
+  font-weight: 600 !important;
+  animation: 1s;
+  color: white !important;
+  border-color: white !important;
+}
+
+.btn:hover {
+  background-color: #ff9f65 !important;
+  border-color: #ff9f65 !important;
+}
+
+i {
+
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.close>i:hover {
+  background-color: red;
+  color: white;
+
+}
+
+.edit>i:hover {
+  background-color: black;
+  color: white;
+
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: red;
+  color: #fff;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 16px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+
+  border-radius: 10px;
+}
+
+.edit {
+  display: flex;
+  padding-right: 40px;
+  margin-bottom: 1px;
+  align-items: center;
+
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

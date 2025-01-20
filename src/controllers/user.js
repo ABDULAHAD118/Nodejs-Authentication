@@ -1,4 +1,5 @@
 import User from "../models/user.js";
+import ToDo from "../models/to-do.js";
 
 const signup = async (req, res) => {
     const { username, email, address, password, confirmPassword } = req.body;
@@ -31,7 +32,8 @@ const login = async (req, res) => {
     const user = await User.findOne({ username: username });
     if (user) {
         if (password === user.password) {
-            return res.status(200).json({ message: "Login Successful" });
+            const todos = await ToDo.find();
+            return res.render("ToDo", { todos })
         }
         else {
             return res.json({ message: "Incorrect Password" })
