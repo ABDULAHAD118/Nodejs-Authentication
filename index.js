@@ -1,7 +1,7 @@
 import express from 'express';
-import router from './routes/user.js';
-import staticRouter from './routes/staticRoutes.js';
-import connection from "./connection.js"
+import router from './src/routes/user.js'
+import staticRouter from './src/routes/staticRoutes.js'
+import connection from './src/config/database.js'
 import 'dotenv/config'
 const app = express();
 const port = process.env.PORT;
