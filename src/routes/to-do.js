@@ -6,5 +6,4 @@ const toDoRouter = express.Router();
 toDoRouter.post('/', createToDo);
 toDoRouter.get('/', allToDo);
 
-
 export default toDoRouter;

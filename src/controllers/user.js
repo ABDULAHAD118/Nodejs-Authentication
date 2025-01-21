@@ -3,13 +3,25 @@ import ToDo from "../models/to-do.js";
 
 const signup = async (req, res) => {
     const { username, email, address, password, confirmPassword } = req.body;
+    //Check that user send all fields
     if (!username || !email || !address || !password || !confirmPassword) {
         return res.status(400).json({ message: 'All fields are required' });
     }
+    //Check that password is same 
     if (password !== confirmPassword) {
         return res.status(400).json({ message: 'Passwords do not match' });
     }
-
+    //Find out that username is unique or not
+    const existingUsername = await User.findOne({ username: username });
+    if (existingUsername) {
+        return res.json({ message: "Username is already used!" })
+    }
+    //Find out that email is unique or not
+    const existingEmail = await User.findOne({ email: email });
+    if (existingEmail) {
+        return res.json({ message: "Email already used!" });
+    }
+    //Add data of user in database
     const user = await User.create({
         username: username,
         email: email,
@@ -26,13 +38,18 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
     const { username, password } = req.body;
+    //Check that user send all fields
     if (!username || !password) {
         return res.status(400).json({ message: 'Send All fields!' });
     }
+    //Find user with username
     const user = await User.findOne({ username: username });
     if (user) {
+        //if username found than match the password
         if (password === user.password) {
+            //Get all todos from database
             const todos = await ToDo.find();
+            //Send todo to frontend to show
             return res.render("ToDo", { todos })
         }
         else {
@@ -40,7 +57,7 @@ const login = async (req, res) => {
         }
     }
     else {
-        return res.json({ message: "User not Found" })
+        return res.status(404).json({ message: "User not Found" })
     }
 }
 
