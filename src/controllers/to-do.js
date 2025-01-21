@@ -25,4 +25,15 @@ const allToDo = async (req, res) => {
     }
 }
 
-export { createToDo, allToDo }
+const deleteToDo = async (req, res) => {
+    const todoID = req.params.id;
+    const todo = await ToDo.findByIdAndDelete(todoID);
+    if (todo) {
+        return res.json({ message: 'To Do Deleted Successfully!' })
+    }
+    else {
+        return res.status(500).json({ message: 'Failed to delete To Do' })
+    }
+}
+
+export { createToDo, allToDo, deleteToDo }

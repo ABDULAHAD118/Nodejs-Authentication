@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Connect to the database
-connection(process.env.MONGODB_URI);
+await connection(process.env.MONGODB_URI);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
