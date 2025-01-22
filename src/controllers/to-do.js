@@ -5,10 +5,9 @@ const createToDo = async (req, res) => {
     if (!title) {
         return res.status(400).json({ message: 'Title is required' });
     }
-    const todo = await ToDo.create({ title: title });
+    const todo = await ToDo.create({ title: title, createdBy: req.user._id });
     if (todo) {
-        const todos = await ToDo.find();
-        return res.render("ToDo", { todos })
+        return res.redirect("/")
     }
     else {
         return res.status(500).json({ message: 'Failed to create To-Do' });

@@ -1,5 +1,6 @@
 import User from "../models/user.js";
-import ToDo from "../models/to-do.js";
+import { v4 as uuidv4 } from 'uuid';
+import { setUser } from '../services/auth.js'
 
 const signup = async (req, res) => {
     const { username, email, address, password, confirmPassword } = req.body;
@@ -29,7 +30,7 @@ const signup = async (req, res) => {
         password: password
     });
     if (user) {
-        return res.redirect("/")
+        return res.redirect("/login")
     }
     else {
         return res.status(500).json({ message: 'Registration Failed!' });
@@ -47,10 +48,10 @@ const login = async (req, res) => {
     if (user) {
         //if username found than match the password
         if (password === user.password) {
-            //Get all todos from database
-            const todos = await ToDo.find();
-            //Send todo to frontend to show
-            return res.render("ToDo", { todos })
+            const sessionId = uuidv4();
+            setUser(sessionId, user);
+            res.cookie('sessionId', sessionId);
+            return res.redirect("/")
         }
         else {
             return res.json({ message: "Incorrect Password" })

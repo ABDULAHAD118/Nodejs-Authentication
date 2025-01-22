@@ -3,12 +3,15 @@ import ToDo from '../models/to-do.js';
 
 const staticRouter = express.Router();
 
-staticRouter.get('/', async (req, res) => {
-    return res.render('index');
+staticRouter.get('/login', async (req, res) => {
+    return res.render('login');
 })
-staticRouter.get('/ToDo', async (req, res) => {
+staticRouter.get('/', async (req, res) => {
+    if (!req.user) {
+        return res.redirect('/login');
+    }
     //Get all todos from database
-    const todos = await ToDo.find();
+    const todos = await ToDo.find({ createdBy: req.user._id });
     return res.render('ToDo', { todos });
 })
 
