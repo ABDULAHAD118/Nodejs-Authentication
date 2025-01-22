@@ -26,7 +26,7 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 
 //ToDo route
 app.use('/to-do', restrictToLoggedinUserOnly, toDoRouter);
-// Basic route
+// Login & Signup route
 app.use('/users', router);
 // Static route
 app.use('/', checkAuth, staticRouter);
