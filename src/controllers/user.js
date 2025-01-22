@@ -1,5 +1,4 @@
 import User from "../models/user.js";
-import { v4 as uuidv4 } from 'uuid';
 import { setUser } from '../services/auth.js'
 
 const signup = async (req, res) => {
@@ -48,9 +47,9 @@ const login = async (req, res) => {
     if (user) {
         //if username found than match the password
         if (password === user.password) {
-            const sessionId = uuidv4();
-            setUser(sessionId, user);
-            res.cookie('sessionId', sessionId);
+
+            const token = setUser(user);
+            res.cookie('token', token);
             return res.redirect("/")
         }
         else {
