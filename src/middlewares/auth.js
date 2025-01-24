@@ -22,10 +22,8 @@ const checkAuth = (req, res, next) => {
     // const userId = req.cookies?.token;
     // const user = getUser(userId);
     const userId = req.headers['authorization'];
-    if (!userId) {
-        next();
-    }
     const token = userId.split('Bearer ')[1];
+
     const user = getUser(token);
     req.user = user;
     next();
