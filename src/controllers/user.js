@@ -49,8 +49,8 @@ const login = async (req, res) => {
         if (password === user.password) {
 
             const token = setUser(user);
-            res.cookie('token', token);
-            return res.redirect("/")
+            // res.cookie('token', token);
+            return res.json({ message: "Login Successfull", token: token });
         }
         else {
             return res.json({ message: "Incorrect Password" })
