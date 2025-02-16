@@ -46,7 +46,7 @@
     </ul>
     <script>
         async function deleteToDo(id) {
-            const result = await fetch(`http://localhost:3000/to-do/${id}`, {
+            const result = await fetch(`https://easy-task-list.vercel.app/to-do/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
